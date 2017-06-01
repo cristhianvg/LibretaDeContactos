@@ -1,6 +1,6 @@
 <?php
 
-interface IArticulo {
+interface IContacto {
 
     public function select();
 
