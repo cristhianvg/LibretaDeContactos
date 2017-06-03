@@ -21,7 +21,7 @@ class contacto {
         $this->usu_id = $usu_id;
     }
 
-        function getId() {
+            function getId() {
         return $this->id;
     }
 

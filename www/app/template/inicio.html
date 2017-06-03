@@ -1,1 +1,406 @@
-hola
+
+
+<div class="container-fluid">
+    <div class=" row barraPrincipal">
+        <div class="col-lg-10">
+            <p class="titulo">Libreta de Contactos<span class="copyRight"><a href="#!/logout"> CristhianVg © 2017</a></span></p>
+        </div>
+        <div class="col-lg-1">
+            <img src="img/IconoAjustes.png" class="imgAjustes img-circle img-responsive" ng-click="showDetail(0)">
+        </div>
+        <div class="col-lg-1">
+            <img src="img/IconoAgregar.png" class="imgAgregar img-circle img-responsive" ng-click="showDetail(1)">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-10">
+                <div class="container-fluid divFormCont" ng-show="show[0]">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle"></i>Sistema De Configuracion</h4>
+                    </div>
+                    <div class="modal-body">
+                        <button type="submit" class="btn btn-primary btn-block btn-sm" ng-click="showDetail(2)">Crear Usuario</button>
+                        <button type="button" class="btn btn-primary btn-block btn-sm" data-toggle="modal" data-target="#nuevoUsuario">Editar Usuario</button>
+                    </div>
+                </div>
+                <div class="container-fluid divFormCont" ng-show="show[2]">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="showDetail(2)"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle"></i>Agregar Usuario</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form ng-submit="submitNuevoUsuario()">
+                            <div class="alert alert-success" ng-show="usuarioRegistrado">
+                                <center>Usuario Creado Con Exito</center>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarUsuario.cedula" type="number" class="form-control" aria-label="..." placeholder="CEDULA" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user-secret iconoForm"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarUsuario.alias" type="text" class="form-control" aria-label="..." placeholder="USUARIO" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock iconoForm3"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarUsuario.contrasena" type="password" class="form-control" aria-label="..." placeholder="CONTRASEÑA" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-unlock-alt iconoForm3"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarUsuario.contrasena2" type="password" class="form-control" aria-label="..." placeholder="CONFIRMAR CONTRASEÑA" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-users"></i>
+                                    </span>
+                                    <select ng-model="dataRegistrarUsuario.rol" class="form-control input-sm" aria-label="...">
+                                        <option value="">Seleccione Rol</option>
+                                        <option value="1">ADMIN</option>
+                                        <option value="2">CELADOR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-block btn-sm">Crear Usuario</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="container-fluid divFormCont" ng-show="show[1]">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle"></i>Nuevo Contacto</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form ng-submit="submitNuevoContacto()">
+                            <div class="alert alert-success" ng-show="ContactoRegistrado">
+                                <center>Contacto Creado Con Exito</center>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-camera"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarContacto.foto" type="text" class="form-control" aria-label="..." placeholder="FOTO" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarContacto.nombre" type="text" class="form-control" aria-label="..." placeholder="NOMBRE COMPLETO" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarContacto.telefono" type="text" class="form-control" aria-label="..." placeholder="TELEFONO" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i>
+                                    </span>
+                                    <input ng-model="dataRegistrarContacto.direccion" type="text" class="form-control" aria-label="..." placeholder="DIRECCION" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-users"></i>
+                                    </span>
+                                    <select ng-model="dataRegistrarContacto.grupo" class="form-control input-sm" aria-label="...">
+                                        <option value="">Seleccione Grupo</option>
+                                        <option>FAMILIA</option>
+                                        <option>AMIGOS</option>
+                                        <option>TRABAJO</option>
+                                        <option>OTROS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-block btn-sm">Agregar Contacto</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <div class="row" ng-repeat="contacto in contactosFamilia">-->
+    <div class="row" ng-repeat="contacto in contactos">
+        <div class="col-lg-4 col-lg-offset-4" style="opacity: 0.8; background: #28324E;" >
+            <div class="divContacto">
+                <div class="col-lg-2">
+                    <img src="img/IconoAgregar.png" class="imgAgregar img-circle img-responsive" ng-click="showDetail(3)">
+                </div>
+                <div class="col-lg-8">
+                    <h2>{{contacto.con_nombre}}</h2>
+                </div>
+                <div class="col-lg-1">
+                    <i ng-click="editarCon(contacto)" title="Editar" class="glyphicon glyphicon-pencil iconoAccionContacto"></i>
+                </div>
+                <div class="col-lg-1">
+                    <i ng-click="eliminarCon(contacto)" class="glyphicon glyphicon-trash iconoAccionContacto"></i>
+                </div>
+            </div>
+            <div ng-show="show[3]" style="background: white">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-phone"></i> Telefono: <span>{{contacto.con_telefono}}</span></h4>
+                </div>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-map-marker"></i> Direccion: <span>{{contacto.con_direccion}}</span></h4>
+                </div>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users"></i> Grupo: <span>{{contacto.con_grupo}}</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade bs-example-modal-lg"  tabindex="-1" role="dialog" id="nuevoUsuario" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1" style="margin-top: 20px;">
+                    <div class="table-responsive ">
+                        <table class="table">
+                            <tr>
+                                <th class="centro">Id</th>
+                                <th class="centro">Cédula</th>
+                                <th class="centro">Alias</th>
+                                <th class="centro">Rol</th>
+                                <th class="centro">Fecha de Creacion</th>
+                                <th class="centro">Acciones</th>
+                            </tr>
+                            <tr ng-repeat="usuario in usuarios">
+                                <td class="centro">{{usuario.usu_id}}</td>
+                                <td class="centro">{{usuario.usu_cedula}}</td>
+                                <td class="centro">{{usuario.usu_alias}}</td>
+                                <td class="centro">{{usuario.rol_id}}</td>
+                                <td class="centro">{{usuario.usu_created_at}}</td>
+                                <td class="centro">
+                                    <i ng-click="editar(usuario)" title="Editar" class="glyphicon glyphicon-pencil iconoTabla"></i>
+                                    <i ng-click="eliminar(usuario)" class="glyphicon glyphicon-trash"></i>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <nav aria-label="...">
+                            <ul class="pager">
+                                <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+                                <li class="next"><a href="#">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDITAR USUARIO-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" id="editarUsuario" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil"></i>
+                    Editar Usuario</h4>
+            </div>
+            <div class="modal-body">
+                <form ng-submit="submitEditarUsuario()">
+                    <div class="alert alert-success" ng-show="usuarioEditado">
+                        <center>Usuario Editado Con Exito</center>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group" hidden>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="edit.id" aria-label="..." readonly placeholder="id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="edit.cedula" aria-label="..." placeholder="CEDULA" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-secret iconoForm"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="edit.alias" aria-label="..." placeholder="USUARIO">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock iconoForm3"></i>
+                                </span>
+                                <input type="password" class="form-control" ng-model="edit.contrasena" aria-label="..." placeholder="CONTRASEÑA">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-unlock-alt iconoForm3"></i>
+                                </span>
+                                <input type="password" class="form-control" ng-model="edit.contrasena2" aria-label="..." placeholder="CONFIRMAR CONTRASEÑA">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users"></i>
+                                </span>
+                                <select class="form-control input-sm" ng-model="edit.rol" aria-label="...">
+                                    <option value="">Seleccione el Rol</option>
+                                    <option value="1">USUARIO</option>
+                                    <option value="2">ADMIN</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-sm">Editar Usuario</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDITAR CONTACTO-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" id="editarContacto" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil"></i>
+                    Editar Contacto</h4>
+            </div>
+            <div class="modal-body">
+                <form ng-submit="submitEditarContacto()">
+                    <div class="alert alert-success" ng-show="contactoEditado">
+                        <center>Contacto Editado Con Exito</center>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group" hidden>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="editCon.id" aria-label="..." readonly placeholder="id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="editCon.foto" aria-label="..." placeholder="FOTO">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="editCon.nombre" aria-label="..." placeholder="NOMBRE">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user-secret iconoForm"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="editCon.telefono" aria-label="..." placeholder="TELEFONO">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock iconoForm3"></i>
+                                </span>
+                                <input type="text" class="form-control" ng-model="editCon.direccion" aria-label="..." placeholder="DIRECCION">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users"></i>
+                                </span>
+                                <select class="form-control input-sm" ng-model="editCon.grupo" aria-label="...">
+                                    <option value="">Seleccione el Rol</option>
+                                    <option>FAMILIA</option>
+                                    <option>AMIGOS</option>
+                                    <option>TRABAJO</option>
+                                    <option>OTROS</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-sm">Editar Contacto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL ELIMINAR USUARIO-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" id="eliminarUsuario" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash"></i>
+                    Eliminar Usuario</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" ng-show="usuarioEliminado">
+                    <center>Usuario Eliminado</center>
+                </div>
+                <center>
+                    <h4>Esta seguro?</h4>
+                    <p>Se va a eliminar el Usuario</p>
+                    <h3>{{alias}}</h3>
+                </center>
+                <button ng-click="submitEliminarUsuario()" type="button" class="btn btn-danger btn-block btn-sm">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL ELIMINAR CONTACTO-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" id="eliminarContacto" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash"></i>
+                    Eliminar Contacto</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" ng-show="contactoEliminado">
+                    <center>Contacto Eliminado</center>
+                </div>
+                <center>
+                    <h4>Esta seguro?</h4>
+                    <p>Se va a eliminar el Usuario</p>
+                    <h3>{{nombre}}</h3>
+                </center>
+                <button ng-click="submitEliminarContacto()" type="button" class="btn btn-danger btn-block btn-sm">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

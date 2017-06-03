@@ -34,14 +34,6 @@
       <Cl au="0" df="" nm="con_deleted_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="usu_id" nu="1">
-        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Fk deAc="1" nm="fk_contacto_usuario" prLkCl="usu_id" upAc="1">
-        <PrTb mn="0" nm="usuario" oe="1" sch="public" zr="1"/>
-        <CdTb mn="1" nm="contacto" oe="1" sch="public" zr="0"/>
-        <ClPr cdCl="usu_id" prCl="usu_id"/>
-      </Fk>
       <UniqueConstraints/>
       <SchTrHis/>
     </Tbl>
@@ -125,9 +117,6 @@
     <TbGl bkCl="ff6666ff" sch="public" tbl="contacto" x="439" y="303"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="usuario" x="949" y="304"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="rol" x="992" y="486"/>
-    <FkGl bkCl="ff000000" childEdge="" nm="public.contacto.fk_contacto_usuario" parentEdge="" positioner="">
-      <positionableLines/>
-    </FkGl>
     <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.usuario.fk_usuario_rol" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
       <positionableLines/>
     </FkGl>
@@ -176,7 +165,7 @@
     </BasicOptionMgr>
   </DbDocOptionMgr>
   <OpenEditors>
-    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="0"/>
   </OpenEditors>
   <TreePaths>
     <TreePath/>

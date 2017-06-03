@@ -24,7 +24,7 @@ class usuarioDAO extends dataSource implements IUsuario {
 		':alias' => $usuario->getAlias(),
 		':cedula' => $usuario->getCedula(),
 		':contrasena' => $usuario->getContrasena(),
-		':rolId' => $usuario->getRolId(),
+		':rolId' => $usuario->getRolid()
 	);
 	return $this->execute($sql, $params);
   }

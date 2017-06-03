@@ -6,12 +6,12 @@ interface IContacto {
 
     public function selectById($id);
 
-    public function insert(Articulo $Articulo);
+    public function insert(Contacto $Contacto);
 
-    public function update(Articulo $Articulo);
+    public function update(Contacto $Contacto);
 
     public function delete($id);
 
-    public function search($codigo);
+    public function search($nombre);
 }
 
